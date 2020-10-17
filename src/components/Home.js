@@ -12,8 +12,16 @@ import {
 } from 'react-router-dom'
 
 const Home = () => {
+  
+   const users = fetch('http://localhost:5000/users')
+  .then(response => response.json())
+  .then(data => data.map(user=>{
+    return(user)
+  }));
+  
   return (
   <div>
+    {console.log(users)}
     <h1>aRtGAllerY</h1>
     <Album/>
     
