@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Album from './imageGallery/Album'
 import Topics from './navigation/Topics'
 import Dashboard from './cart/Dashboard'
@@ -12,20 +12,27 @@ import {
 } from 'react-router-dom'
 
 const Home = () => {
-  
-   const users = fetch('http://localhost:5000/users')
-  .then(response => response.json())
-  .then(data => data.map(user=>{
-    return(user)
-  }));
-  
+  useEffect(() => {
+    fetch('http://localhost:5000/users')
+      .then((response) => response.json())
+      .then((data) =>
+        data.map((user) => {
+          SetUser(user)
+        })
+      )
+  })
+
+  const [user, SetUser] = useState({})
+  //need to remember to use the correct data-type for state placeholder to avoid errors
+  const { first_name, last_name } = user
+ 
   return (
-  <div>
-    {console.log(users)}
-    <h1>aRtGAllerY</h1>
-    <Album/>
-    
-  </div>
-)}
+    <div>
+      <h1>{first_name + ' ' + last_name}</h1>
+
+      <Album />
+    </div>
+  )
+}
 
 export default Home
