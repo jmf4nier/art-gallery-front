@@ -65,13 +65,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Album() {
   const [products, SetProducts] = useState([])
-  const fetchProducts = () => {
-    fetch('http://localhost:5000/products')
-      .then((response) => response.json())
-      .then((data) => SetProducts(data))
-  }
+  
   useEffect(() => {
-    fetchProducts()
+    
   }, []) //vital to stopping unwanted updates otherwise get runaway requests
 
   console.log(products)
