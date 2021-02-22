@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Album from './imageGallery/Album'
-import Topics from './navigation/Topics'
-import Dashboard from './cart/Dashboard'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom'
+import Products from '../features/productFetch/Products'
+import Copyright from './materialComponents/Copyright'
+import Footer from './materialComponents/Footer'
+import Header from './materialComponents/Header'
+import MenuBar from './materialComponents/MenuBar'
 
 const Home = () => {
   const fetchUser = () => {
@@ -18,13 +12,12 @@ const Home = () => {
       .then((data) =>
         data.map((user) => {
           SetUser(user)
-          
         })
       )
   }
   useEffect(() => {
     fetchUser()
-  }, []) //vital to stopping unwanted updates otherwise get runaway requests
+  }, []) 
 
   const [user, SetUser] = useState({})
   //need to remember to use the correct data-type for state placeholder to avoid errors
@@ -33,8 +26,10 @@ const Home = () => {
   return (
     <div>
       <h1>{first_name + ' ' + last_name}</h1>
-
-      <Album />
+      {/* <MenuBar /> */}
+      <Header/>
+      <Products />
+      <Footer/>
     </div>
   )
 }
